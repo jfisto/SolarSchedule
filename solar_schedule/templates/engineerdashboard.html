@@ -178,33 +178,33 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
-        <a href="#" class="nav-link active" aria-current="page">
+        <a href="../home" class="nav-link text-white link-body-emphasis" aria-current="page">
           <svg class="bi pe-none me-2" width="16" height="16"><use href="#home"></use></svg>
           Home
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link text-white">
+        <a href="../dashboards" class="nav-link text-white link-body-emphasis">
           <svg class="bi pe-none me-2" width="16" height="16"><use href="#speedometer2"></use></svg>
           Dashboard
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link text-white">
+        <a href="../scheduleengineer" class="nav-link text-white link-body-emphasis">
           <svg class="bi pe-none me-2" width="16" height="16"><use href="#table"></use></svg>
           ScheduleEngineer
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link text-white">
+        <a href="../engineers" class="nav-link active">
           <svg class="bi pe-none me-2" width="16" height="16"><use href="#grid"></use></svg>
-          Products
+          Engineers
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link text-white">
+        <a href="../other" class="nav-link text-white link-body-emphasis">
           <svg class="bi pe-none me-2" width="16" height="16"><use href="#people-circle"></use></svg>
-          Customers
+          Other
         </a>
       </li>
     </ul>
@@ -223,7 +223,7 @@
       </ul>
     </div>
   </div>
-0
+
   <div class="b-example-divider b-example-vr"></div>
 
 <!--  <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary" style="width: 280px;">-->
@@ -399,104 +399,285 @@
 <!--  <div class="b-example-divider b-example-vr"></div>-->
 
   <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-body-tertiary" style="width: 380px;">
-    <a href="/" class="d-flex align-items-center flex-shrink-0 p-3 link-body-emphasis text-decoration-none border-bottom">
+    <a href="/" class="text-white d-flex align-items-center flex-shrink-0 p-3 text-decoration-none border-bottom">
 <!--      <svg class="bi pe-none me-2" width="30" height="24"><use href="#bootstrap"></use></svg>-->
-      <span class="fs-5 fw-semibold">List group</span>
+      <span class="fs-5 fw-semibold">Список инженеров мониторинга</span>
     </a>
     <div class="list-group list-group-flush border-bottom scrollarea">
-      <a href="#" class="list-group-item list-group-item-action active py-3 lh-sm" aria-current="true">
-        <div class="d-flex w-100 align-items-center justify-content-between">
-          <strong class="mb-1">List group item heading</strong>
-          <small>Wed</small>
-        </div>
-        <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
-      </a>
-      <a href="#" class="list-group-item list-group-item-action py-3 lh-sm">
-        <div class="d-flex w-100 align-items-center justify-content-between">
-          <strong class="mb-1">List group item heading</strong>
-          <small class="text-body-secondary">Tues</small>
-        </div>
-        <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
-      </a>
-      <a href="#" class="list-group-item list-group-item-action py-3 lh-sm">
-        <div class="d-flex w-100 align-items-center justify-content-between">
-          <strong class="mb-1">List group item heading</strong>
-          <small class="text-body-secondary">Mon</small>
-        </div>
-        <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
-      </a>
 
+
+
+<!--     Test   -->
+        <form id="inputForm" style="display: none;" action="" method="POST">
+
+    <div class="card mb-3">
+
+        <div class="card-body">
+            <input type="text" class="form-control mb-2" placeholder="Enter person name" name="person">
+            <input type="text" class="form-control mb-2" placeholder="Enter department" name="dep">
+            <input type="text" class="form-control mb-2" placeholder="Enter job title" name="job">
+            <input type="text" class="form-control mb-2" placeholder="Enter phone number" name="phone">
+            <button type="submit">Submit</button>
+        </div>
+    </div>
+</form>
+
+<a href="#" class="list-group-item list-group-item-action py-3 lh-sm" onclick="toggleInputForm()">
+    <div class="d-flex w-100 align-items-center justify-content-between">
+        <strong class="mb-1">{{ person }}</strong>
+        <small>{{ dep }}</small>
+    </div>
+    <div class="col-10 mb-1 small">{{ job }}</div>
+    <div class="col-10 mb-1 small">{{ phone }}</div>
+</a>
+
+<script>
+    function toggleInputForm() {
+        const inputForm = document.getElementById('inputForm');
+        if (inputForm.style.display === 'none') {
+            inputForm.style.display = 'block';
+        } else {
+            inputForm.style.display = 'none';
+        }
+    }
+</script>
+<!--     Test   -->
+
+        <!--     Test   -->
+<!--      <a href="#" class="list-group-item list-group-item-action py-3 lh-sm" onclick="toggleInputForm()">-->
+<!--        <span class="fs-5 fw-semibold">Добавить нового инженера</span>-->
+<!--      </a>-->
+<!--    <div class="d-flex w-100 align-items-center justify-content-between">-->
+<!--        <strong class="mb-1">{{ person }}</strong>-->
+<!--        <small>{{ dep }}</small>-->
+<!--    </div>-->
+<!--    <div class="col-10 mb-1 small">{{ job }}</div>-->
+<!--    <div class="col-10 mb-1 small">{{ phone }}</div>-->
+<!--</a>-->
+
+<!--<div id="inputForm" style="display: none;">-->
+<!--    <div class="card mb-3">-->
+<!--        <div class="card-body">-->
+<!--            <input type="text" class="form-control mb-2" placeholder="Enter person name">-->
+<!--            <input type="text" class="form-control mb-2" placeholder="Enter department">-->
+<!--            <input type="text" class="form-control mb-2" placeholder="Enter job title">-->
+<!--            <input type="text" class="form-control mb-2" placeholder="Enter phone number">-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<script>-->
+<!--    function toggleInputForm() {-->
+<!--        const inputForm = document.getElementById('inputForm');-->
+<!--        if (inputForm.style.display === 'none') {-->
+<!--            inputForm.style.display = 'block';-->
+<!--        } else {-->
+<!--            inputForm.style.display = 'none';-->
+<!--        }-->
+<!--    }-->
+<!--</script>-->
+        <!--     Test   -->
+
+
+
+<!--        <form id="inputForm" method="POST" action="">-->
+<!--    <div class="card mb-3">-->
+<!--        <div class="card-body">-->
+<!--            <input type="text" class="form-control mb-2" placeholder="Enter person name" name="person" id="personInput">-->
+<!--            <input type="submit" value="Submit">-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</form>-->
+
+<!--<script>-->
+<!--    const people = ['Alice', 'Bob', 'Charlie', 'David']; // Здесь список предопределенных People-->
+
+<!--    function checkIfUserExists() {-->
+<!--        const inputName = document.getElementById('personInput').value;-->
+
+<!--        if (people.includes(inputName)) {-->
+<!--            // Показываем push-уведомление-->
+<!--            if (Notification.permission === 'granted') {-->
+<!--                new Notification('Уведомление', { body: 'Этот пользователь уже существует!' });-->
+<!--            } else if (Notification.permission !== 'denied') {-->
+<!--                Notification.requestPermission().then(permission => {-->
+<!--                    if (permission === 'granted') {-->
+<!--                        new Notification('Уведомление', { body: 'Этот пользователь уже существует!' });-->
+<!--                    }-->
+<!--                });-->
+<!--            }-->
+<!--        }-->
+<!--    }-->
+
+<!--    document.getElementById('inputForm').addEventListener('submit', function(event) {-->
+<!--        event.preventDefault(); // Предотвращаем отправку формы-->
+<!--        checkIfUserExists();-->
+<!--    });-->
+<!--</script>-->
+
+<!--      <a href="#" class="list-group-item list-group-item-action active py-3 lh-sm" aria-current="true">-->
+      {% for person, dep, job, phone in people %}
       <a href="#" class="list-group-item list-group-item-action py-3 lh-sm" aria-current="true">
         <div class="d-flex w-100 align-items-center justify-content-between">
-          <strong class="mb-1">List group item heading</strong>
-          <small class="text-body-secondary">Wed</small>
+          <strong class="mb-1">{{ person }}</strong>
+          <small>{{ dep }}</small>
         </div>
-        <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
+        <div class="col-10 mb-1 small">{{ job }}</div>
+        <div class="col-10 mb-1 small">{{ phone }}</div>
       </a>
-      <a href="#" class="list-group-item list-group-item-action py-3 lh-sm">
-        <div class="d-flex w-100 align-items-center justify-content-between">
-          <strong class="mb-1">List group item heading</strong>
-          <small class="text-body-secondary">Tues</small>
-        </div>
-        <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
-      </a>
-      <a href="#" class="list-group-item list-group-item-action py-3 lh-sm">
-        <div class="d-flex w-100 align-items-center justify-content-between">
-          <strong class="mb-1">List group item heading</strong>
-          <small class="text-body-secondary">Mon</small>
-        </div>
-        <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
-      </a>
-      <a href="#" class="list-group-item list-group-item-action py-3 lh-sm" aria-current="true">
-        <div class="d-flex w-100 align-items-center justify-content-between">
-          <strong class="mb-1">List group item heading</strong>
-          <small class="text-body-secondary">Wed</small>
-        </div>
-        <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
-      </a>
-      <a href="#" class="list-group-item list-group-item-action py-3 lh-sm">
-        <div class="d-flex w-100 align-items-center justify-content-between">
-          <strong class="mb-1">List group item heading</strong>
-          <small class="text-body-secondary">Tues</small>
-        </div>
-        <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
-      </a>
-      <a href="#" class="list-group-item list-group-item-action py-3 lh-sm">
-        <div class="d-flex w-100 align-items-center justify-content-between">
-          <strong class="mb-1">List group item heading</strong>
-          <small class="text-body-secondary">Mon</small>
-        </div>
-        <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
-      </a>
-      <a href="#" class="list-group-item list-group-item-action py-3 lh-sm" aria-current="true">
-        <div class="d-flex w-100 align-items-center justify-content-between">
-          <strong class="mb-1">List group item heading</strong>
-          <small class="text-body-secondary">Wed</small>
-        </div>
-        <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
-      </a>
-      <a href="#" class="list-group-item list-group-item-action py-3 lh-sm">
-        <div class="d-flex w-100 align-items-center justify-content-between">
-          <strong class="mb-1">List group item heading</strong>
-          <small class="text-body-secondary">Tues</small>
-        </div>
-        <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
-      </a>
-      <a href="#" class="list-group-item list-group-item-action py-3 lh-sm">
-        <div class="d-flex w-100 align-items-center justify-content-between">
-          <strong class="mb-1">List group item heading</strong>
-          <small class="text-body-secondary">Mon</small>
-        </div>
-        <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
-      </a>
+      {% endfor %}
+
+
+
+<!--      {% for person, dep, job, phone in people %}-->
+<!--    <a href="#" class="list-group-item list-group-item-action py-3 lh-sm" aria-current="true" onclick="showInputFields('{{ person }}', '{{ dep }}', '{{ job }}', '{{ phone }}')">-->
+<!--        <div class="d-flex w-100 align-items-center justify-content-between">-->
+<!--            <strong class="mb-1">{{ person }}</strong>-->
+<!--            <small>{{ dep }}</small>-->
+<!--        </div>-->
+<!--        <div class="col-10 mb-1 small">{{ job }}</div>-->
+<!--        <div class="col-10 mb-1 small">{{ phone }}</div>-->
+<!--    </a>-->
+<!--    {% endfor %}-->
+
+<!--    <div id="inputFields"></div>-->
+
+<!--    <script>-->
+<!--        function showInputFields(person, dep, job, phone) {-->
+<!--            var inputFields = document.getElementById('inputFields');-->
+<!--            inputFields.innerHTML =-->
+<!--                <input type="text" value="${person}">-->
+<!--                <input type="text" value="${dep}">-->
+<!--                <input type="text" value="${job}">-->
+<!--                <input type="text" value="${phone}">-->
+<!--            ;-->
+<!--        }-->
+<!--    </script>-->
+
+<!--      <a href="#" class="list-group-item list-group-item-action py-3 lh-sm">-->
+<!--        <div class="d-flex w-100 align-items-center justify-content-between">-->
+<!--          <strong class="mb-1">List group item heading2</strong>-->
+<!--          <small class="text-body-secondary">Tues</small>-->
+<!--        </div>-->
+<!--        <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>-->
+<!--      </a>-->
+<!--      <a href="#" class="list-group-item list-group-item-action py-3 lh-sm">-->
+<!--        <div class="d-flex w-100 align-items-center justify-content-between">-->
+<!--          <strong class="mb-1">List group item heading</strong>-->
+<!--          <small class="text-body-secondary">Mon</small>-->
+<!--        </div>-->
+<!--        <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>-->
+<!--      </a>-->
+
+<!--      <a href="#" class="list-group-item list-group-item-action py-3 lh-sm" aria-current="true">-->
+<!--        <div class="d-flex w-100 align-items-center justify-content-between">-->
+<!--          <strong class="mb-1">List group item heading</strong>-->
+<!--          <small class="text-body-secondary">Wed</small>-->
+<!--        </div>-->
+<!--        <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>-->
+<!--      </a>-->
+<!--      <a href="#" class="list-group-item list-group-item-action py-3 lh-sm">-->
+<!--        <div class="d-flex w-100 align-items-center justify-content-between">-->
+<!--          <strong class="mb-1">List group item heading</strong>-->
+<!--          <small class="text-body-secondary">Tues</small>-->
+<!--        </div>-->
+<!--        <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>-->
+<!--      </a>-->
+<!--      <a href="#" class="list-group-item list-group-item-action py-3 lh-sm">-->
+<!--        <div class="d-flex w-100 align-items-center justify-content-between">-->
+<!--          <strong class="mb-1">List group item heading</strong>-->
+<!--          <small class="text-body-secondary">Mon</small>-->
+<!--        </div>-->
+<!--        <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>-->
+<!--      </a>-->
+<!--      <a href="#" class="list-group-item list-group-item-action py-3 lh-sm" aria-current="true">-->
+<!--        <div class="d-flex w-100 align-items-center justify-content-between">-->
+<!--          <strong class="mb-1">List group item heading</strong>-->
+<!--          <small class="text-body-secondary">Wed</small>-->
+<!--        </div>-->
+<!--        <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>-->
+<!--      </a>-->
+<!--      <a href="#" class="list-group-item list-group-item-action py-3 lh-sm">-->
+<!--        <div class="d-flex w-100 align-items-center justify-content-between">-->
+<!--          <strong class="mb-1">List group item heading</strong>-->
+<!--          <small class="text-body-secondary">Tues</small>-->
+<!--        </div>-->
+<!--        <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>-->
+<!--      </a>-->
+<!--      <a href="#" class="list-group-item list-group-item-action py-3 lh-sm">-->
+<!--        <div class="d-flex w-100 align-items-center justify-content-between">-->
+<!--          <strong class="mb-1">List group item heading</strong>-->
+<!--          <small class="text-body-secondary">Mon</small>-->
+<!--        </div>-->
+<!--        <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>-->
+<!--      </a>-->
+<!--      <a href="#" class="list-group-item list-group-item-action py-3 lh-sm" aria-current="true">-->
+<!--        <div class="d-flex w-100 align-items-center justify-content-between">-->
+<!--          <strong class="mb-1">List group item heading</strong>-->
+<!--          <small class="text-body-secondary">Wed</small>-->
+<!--        </div>-->
+<!--        <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>-->
+<!--      </a>-->
+<!--      <a href="#" class="list-group-item list-group-item-action py-3 lh-sm">-->
+<!--        <div class="d-flex w-100 align-items-center justify-content-between">-->
+<!--          <strong class="mb-1">List group item heading</strong>-->
+<!--          <small class="text-body-secondary">Tues</small>-->
+<!--        </div>-->
+<!--        <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>-->
+<!--      </a>-->
+<!--      <a href="#" class="list-group-item list-group-item-action py-3 lh-sm">-->
+<!--        <div class="d-flex w-100 align-items-center justify-content-between">-->
+<!--          <strong class="mb-1">List group item heading</strong>-->
+<!--          <small class="text-body-secondary">Mon</small>-->
+<!--        </div>-->
+<!--        <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>-->
+<!--      </a>-->
     </div>
   </div>
 
   <div class="b-example-divider b-example-vr"></div>
+<!--  <style>-->
+<!--        .card {-->
+<!--            border: 1px solid #ccc;-->
+<!--            padding: 10px;-->
+<!--            margin: 10px;-->
+<!--            width: 300px;-->
+<!--        }-->
+<!--    </style>-->
+
+<!--  <button id="showCardButton">Show Card</button>-->
+<!--    <div id="cardContainer"></div>-->
+
+<!--    <script>-->
+<!--        document.getElementById('showCardButton').addEventListener('click', function() {-->
+<!--            var cardContainer = document.getElementById('cardContainer');-->
+
+<!--            var card = document.createElement('div');-->
+<!--            card.className = 'card';-->
+
+<!--            var input1 = document.createElement('input');-->
+<!--            input1.type = 'text';-->
+<!--            input1.placeholder = 'Field 1';-->
+<!--            card.appendChild(input1);-->
+
+<!--            var input2 = document.createElement('input');-->
+<!--            input2.type = 'text';-->
+<!--            input2.placeholder = 'Field 2';-->
+<!--            card.appendChild(input2);-->
+
+<!--            var input3 = document.createElement('input');-->
+<!--            input3.type = 'text';-->
+<!--            input3.placeholder = 'Field 3';-->
+<!--            card.appendChild(input3);-->
+
+<!--            cardContainer.appendChild(card);-->
+<!--        });-->
+<!--    </script>-->
 </main>
 <!--<script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">-->
 <!--</script>-->
 <!--    <script src="Solar.js">-->
 <!--    </script>-->
 
-</body></html>
+</body>
+</html>

@@ -1,5 +1,5 @@
 import os.path
-from solar_schedule.dirs import EXCEL_DIR
+from solar_schedule.dirs import DATA_DIR
 import pandas as pd
 import uuid
 from pandas.io.excel import ExcelWriter
@@ -8,14 +8,15 @@ from pandas.io.excel import ExcelWriter
 ###TODO: Запись, чтение и изменение DB нужно переделать. Работает не корректно
 class ActionDB:
     def __init__(self):
-        self.file_name = EXCEL_DIR / 'schedule.xlsx'
+        self.file_name = DATA_DIR / 'schedule.xlsx'
 
-    def _select_from_db(self):
-        file_name = EXCEL_DIR / 'schedule.xlsx'
+    def select_from_db(self):
+        file_name = DATA_DIR / 'schedule.xlsx'
 
         # Чтение данных из листа пользователей
-        df1 = pd.read_excel(file_name, sheet_name="engineer_test.db")
-        print(df1)
+        df1 = pd.read_excel(file_name, sheet_name="engineer.db")
+        return df1
+
 
 
 
@@ -95,5 +96,5 @@ if __name__ == '__main__':
     # obj.delete_from_db()
     # obj.update_note_to_db()
     # obj._select_from_db()
-    print(obj.create_uuid_engineer())
+    # print(obj.create_uuid_engineer())
     # print(EXCEL_DIR)
