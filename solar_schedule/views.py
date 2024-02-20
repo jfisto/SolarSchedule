@@ -1,21 +1,26 @@
-from django.shortcuts import render
+from django.contrib.auth import authenticate
+from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_protect
 from django.views.generic import TemplateView
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 import pandas as pd
 from solar_schedule.dirs import DATA_DIR
 from solar_schedule.exp.action_to_db import ActionDB
+import json
 
 # Create your views here.
 
 class EngineerDashboard(TemplateView):
     template_name = 'engineerdashboard.html'
-    key_db = ['csrfmiddlewaretoken', 'time_period', 'type_lesson',
-              'name_lesson', 'group_name', 'cause',
-              'science_degree_subject', 'job_subject', 'subject',
-              'science_degree_object', 'job_object', 'object']
+    # key_db = ['csrfmiddlewaretoken', 'time_period', 'type_lesson',
+    #           'name_lesson', 'group_name', 'cause',
+    #           'science_degree_subject', 'job_subject', 'subject',
+    #           'science_degree_object', 'job_object', 'object']
     # @csrf_protect
     def get(self,request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return redirect("/login")
+
         obj = ActionDB()
         data = obj.select_from_db()
         people = list(data['FullName'])
@@ -216,6 +221,7 @@ class EngineerDashboard(TemplateView):
         # }
         return render(request,self.template_name,ctx)
 
+
     def post(self, request): # POST requset from page
 
         return HttpResponseRedirect("engineers/")
@@ -224,6 +230,9 @@ class HomePage(TemplateView):
     template_name = 'homepage.html'
 
     def get(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return redirect("/login")
+
         ctx = {}
         return render(request, self.template_name, ctx)
 
@@ -231,6 +240,9 @@ class Dashboards(TemplateView):
     template_name = 'dashboards.html'
 
     def get(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return redirect("/login")
+
         ctx = {}
         return render(request, self.template_name, ctx)
 
@@ -238,6 +250,9 @@ class ScheduleEngineer(TemplateView):
     template_name = 'scheduleengineer.html'
 
     def get(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return redirect("/login")
+
         ctx = {}
         return render(request, self.template_name, ctx)
 
@@ -245,12 +260,58 @@ class Other(TemplateView):
     template_name = 'other.html'
 
     def get(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return redirect("/login")
+
         ctx = {}
         return render(request, self.template_name, ctx)
 
-class Auth(TemplateView):
-    template_name = 'auth.html'
+# class Auth(TemplateView):
+#     template_name = 'auth.html'
+#
+#     def get(self, request, *args, **kwargs):
+#         ctx = {}
+#         return render(request, self.template_name, ctx)
+#
+#     def post(self, request, *args, **kwargs):
+#         # data = json.loads(request.body)
+#         username = request.POST["username"]
+#         password = request.POST["password"]
+#         # print(data)
+#         user = authenticate(username=username, password=password)
+#         print(user)
+#         if user is not None:
+#             return JsonResponse({"validate": "A backend authenticated the credentials"})
+#         else:
+#             return JsonResponse({"validate":"No backend authenticated the credentials"})
 
-    def get(self, request, *args, **kwargs):
-        ctx = {}
-        return render(request, self.template_name, ctx)
+
+from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
+from django.views import View
+from django import forms
+from django.contrib import messages
+
+
+class LoginForm(forms.Form):
+    username = forms.CharField(label='Username')
+    password = forms.CharField(label='Password', widget=forms.PasswordInput)
+
+class LoginView(View):
+    def get(self, request):
+        form = LoginForm()
+        return render(request, 'login.html', {'form': form})
+
+    def post(self, request):
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                messages.success(request, 'You have been successfully logged in.')
+                return redirect('/home/')  # Redirect to home page after successful login
+            else:
+                messages.error(request, 'Invalid username or password. Please try again.')
+        return render(request, 'login.html', {'form': form})

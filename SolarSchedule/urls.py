@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from solar_schedule.views import EngineerDashboard, HomePage, Dashboards, ScheduleEngineer, Auth, Other
+from solar_schedule.views import EngineerDashboard, HomePage, Dashboards, ScheduleEngineer, Other, LoginView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,5 +26,6 @@ urlpatterns = [
     path('scheduleengineer/', ScheduleEngineer.as_view()),
     path('dashboards/', Dashboards.as_view()),
     path('other/', Other.as_view()),
-    path('auth/', Auth.as_view())
+    # path('auth/', Auth.as_view()),
+    path('login/', LoginView.as_view())
 ]
