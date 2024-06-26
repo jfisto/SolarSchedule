@@ -1,6 +1,6 @@
 import sys
 from PySide6.QtWidgets import QMainWindow, QApplication,  QDialog,  QVBoxLayout,QLabel
-from solar_schedule import dirs
+from solar_schedule import dirs_path
 from action_to_db import ActionDB as ABD
 
 from schedule_solar import Ui_MainWindow

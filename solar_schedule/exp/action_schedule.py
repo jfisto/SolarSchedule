@@ -1,5 +1,5 @@
 import os.path
-from solar_schedule.dirs import EXCEL_DIR
+from solar_schedule.dirs_path import EXCEL_DIR
 import pandas as pd
 from pandas.io.excel import ExcelWriter
 

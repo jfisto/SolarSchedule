@@ -145,7 +145,8 @@ STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
     EDITOR_DIR / "static",
-    EDITOR_DIR / "static" / "css"
+    EDITOR_DIR / "static" / "css",
+    EDITOR_DIR / "static" / "assets" / "js"
 ]
 
 # Default primary key field type

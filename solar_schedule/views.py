@@ -1,12 +1,15 @@
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
-from django.views.decorators.csrf import csrf_protect
-from django.views.generic import TemplateView
+from django.views.decorators.csrf import csrf_protect, csrf_exempt
+from django.views.generic import TemplateView, View
 from django.http import HttpResponseRedirect, JsonResponse
+from django import forms
+from django.contrib import messages
 import pandas as pd
-from solar_schedule.dirs import DATA_DIR
+from solar_schedule.dirs_path import DATA_DIR
 from solar_schedule.exp.action_to_db import ActionDB
-import json
+from .create_time import DataRasp
+from .action_schedule import ScheduleEngineer
 
 # Create your views here.
 
@@ -248,13 +251,30 @@ class Dashboards(TemplateView):
 
 class ScheduleEngineer(TemplateView):
     template_name = 'scheduleengineer.html'
+    # template_name = 'index.html'
 
     def get(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             return redirect("/login")
-
+        # min_time = DataRasp()
+        # ctx = {
+        #     'data_lesson': {
+        #         'title': 'Дата и время смены',
+        #         'name': 'time_period',
+        #         'date_min': min_time.date_min()
+        #     }}
         ctx = {}
         return render(request, self.template_name, ctx)
+
+
+    def post(self, request):  # POST requset from page
+        obj = ScheduleEngineer()
+        # Далее нужно будет использовать UUID пользователя для добавления
+        data = dict(request.POST.dict())
+        # print(data.get('person'), data.get('time_period'))
+        # obj.add_day(data.get('person'), data.get('time_period'))
+        return JsonResponse({"message": "ok"})
+
 
 class Other(TemplateView):
     template_name = 'other.html'
@@ -285,14 +305,6 @@ class Other(TemplateView):
 #         else:
 #             return JsonResponse({"validate":"No backend authenticated the credentials"})
 
-
-from django.contrib.auth import authenticate, login
-from django.shortcuts import render, redirect
-from django.views import View
-from django import forms
-from django.contrib import messages
-
-
 class LoginForm(forms.Form):
     username = forms.CharField(label='Username')
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
@@ -315,3 +327,9 @@ class LoginView(View):
             else:
                 messages.error(request, 'Invalid username or password. Please try again.')
         return render(request, 'login.html', {'form': form})
+
+class LogoutView(View):
+    def post(self, request):
+        logout(request)
+        messages.success(request, 'You have been successfully logged out.')
+        return redirect('/login/')  # Redirect to login page after logout
